@@ -1,6 +1,6 @@
 let email = document.getElementById("email");
 let password = document.getElementById("password");
-const onlogin = async () => {
+const onLogin = async () => {
   let obj = {
     email: email.value,
     password: password.value,
@@ -18,8 +18,7 @@ const onlogin = async () => {
     let res = await responce.json();
     console.log("res", res);
     alert("Login Successfull");
-    window.location.href =
-    "http://127.0.0.1:5500/Frontend/home/home.html";
+    window.location.href = "http://127.0.0.1:5500/Frontend/home/home.html";
     email.value = "";
     password.value = "";
   } catch (error) {

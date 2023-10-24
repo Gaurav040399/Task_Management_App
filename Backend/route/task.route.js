@@ -4,7 +4,7 @@ const {allTask,singleTask,createTask,updateTask,deleteTask,adminRoute} = require
 const { authenticateUser } = require("../middleware/auth");
 const { authRole } = require("../middleware/roleBaseAcc");
 
-taskRouter.get("/", authenticateUser, allTask);
+taskRouter.get("/",  allTask);
 taskRouter.get("/admin/user",authenticateUser,authRole("admin"),adminRoute);
 taskRouter.post("/create",authenticateUser, createTask)
 taskRouter.get("/:id",singleTask)

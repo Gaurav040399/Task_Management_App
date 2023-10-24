@@ -116,7 +116,7 @@
             </div>
           </div>
           <div class="btn">
-            <button onclick="onlogin()">Login</button>
+            <button  id="login">Login</button>
           </div>
           <div>
             <p class="signupLink">
@@ -127,5 +127,40 @@
       </div>
     </div>
   </body>
-  <script src="./index.js"></script>
-</html>
+  <!-- <script src="./index.js"></script> -->
+  </html>
+  <script>
+    let email = document.getElementById("email");
+let password = document.getElementById("password");
+let loginBtn = document.getElementById("login")
+
+loginBtn.addEventListener("click", async (e) => {
+  e.preventDefault()
+  let obj = {
+    email: email.value,
+    password: password.value,
+  };
+  console.log(obj);
+  try {
+    let url = "http://localhost:8080/user/login";
+    let responce = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(obj),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let res = await responce.json();
+    console.log("res", res);
+    localStorage.setItem("token",res.token)
+    alert("Login Successfull");
+    window.location.href = "http://www.w3schools.com";
+    email.value = "";
+    password.value = "";
+  } catch (error) {
+    alert("error")
+    console.log(error.message);
+  }
+});
+
+  </script>

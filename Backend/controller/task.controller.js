@@ -21,9 +21,9 @@ const singleTask = async(req,res)=>{
 }
 const createTask = async(req,res)=>{
     try {
-        const {title , description} = req.body;
+        const {title , description, status} = req.body;
 
-        const newTask = new Task({title,description});
+        const newTask = new Task({title,description,status});
         // console.log(req.userID)
         const user = await User.findOne({_id:req.userID})
         user.tasks.push(newTask._id)
