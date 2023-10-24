@@ -1,0 +1,131 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1 class="heading">Login to access Task Manager Application</h1>
+   <div class="container">
+    <form action="">
+        <div class="inputDiv">
+            <label for="email">Email :</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="inputDiv">
+            <label for="password">Password :</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required>
+        </div>
+        <input type="submit" value="Login" class="btn">
+    </form>
+   <div class="ad">
+    <div >
+        <p>Don't have an account? <a href="./signup/signup.html">Signup here</a></p>
+    </div>
+    <div class="remember">
+        <input type="checkbox" name="" id="" >
+        <p class="p-3">Remember me</p>
+    </div>
+   </div>
+   </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register page</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script
+      src="https://kit.fontawesome.com/8f8488f52c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <div class="first">
+         
+          <p><i>Finally, Task Manager Application</i></p>
+          <div>
+            <div class="tick">
+              <img
+                src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg"
+                alt=""
+                class="center"
+              />
+              <p>
+                <b>Task Manager.</b> Easy and intuitive Task manager that
+                captures all your data without changing the way you work.
+              </p>
+            </div>
+            <div class="tick">
+              <img
+                src="https://19495563.fs1.hubspotusercontent-na1.net/hubfs/19495563/raw_assets/public/harvest-theme/images/icons/icon-checklist-black.svg"
+                alt=""
+                class="center"
+              />
+              <p>
+                <b>Status</b> Instantly create reports across projects.
+              </p>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <h1 class="center">Login to Task Manager</h1>
+        <div class="form">
+          <div>
+            <label for="email">Email:</label>
+            <i class="fa-solid fa-envelope"></i>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter Your email..."
+            />
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <i class="fa-solid fa-star"></i>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter Your password..."
+            />
+          </div>
+          <div class="forgotPass">
+            <div class="checkbox">
+              <input type="checkbox" name="" id="checkboxInp" />
+              <p>Remember me</p>
+            </div>
+            <div class="fp">
+              <p>forgot password</p>
+            </div>
+          </div>
+          <div class="btn">
+            <button onclick="onlogin()">Login</button>
+          </div>
+          <div>
+            <p class="signupLink">
+              Don't have an account?<a href="./signup/signup.html"> Signup</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./index.js"></script>
+</html>

@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    height: 50%;
+    margin: auto;
+    border: 2px solid red;
+}
+
+label{
+    width: 90px;
+    padding: 5px;
+    /* border: 2px solid green; */
+}
+
+input{
+    padding: 5px 8px;
+    border: 3px solid black;
+    border-radius: 5px;
+    border-top: 1px solid ;
+    border-bottom: 1px solid;
+}
+
+form{
+   
+    border: 2px solid green;
+    
+}
+.inputDiv{
+ margin-bottom: 5px;
+}
+.heading{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ad{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin: auto;
+}
+
+.remember{
+    border: 2px solid ;
+    padding: 2px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
