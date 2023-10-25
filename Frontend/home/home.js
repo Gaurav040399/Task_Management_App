@@ -26,7 +26,7 @@ async function editCreatTask(){
   }
   // console.log(data)
   try {
-      let url = "http://localhost:8080/task/create";
+      let url = "https://task-manager-yu2l.onrender.com/task/create";
       let responce = await fetch(url, {
         method: "POST",
         body: JSON.stringify(data),
@@ -60,7 +60,7 @@ async function editCreatTask(){
           status : form.status.value
       }
       
-      let resPatch = await fetch(`http://localhost:8080/task/update/${editingData._id}`,{
+      let resPatch = await fetch(`https://task-manager-yu2l.onrender.com/task/update/${editingData._id}`,{
           method : "PATCH",
           headers:{
               "content-type":"application/json",
@@ -94,7 +94,7 @@ taskBtn.addEventListener("click",allTaskf)
 
  async function allTaskf(){
   try {
-    let url = "http://localhost:8080/task";
+    let url = "https://task-manager-yu2l.onrender.com/task";
     let responce = await fetch(url,{
       headers:{
         "Authorization": localStorage.getItem("token")
@@ -135,7 +135,7 @@ function Data(data){
         isEditing = true
         let id = e.target.id
         console.log(id)
-        let url = `http://localhost:8080/task/${id}`;
+        let url = `https://task-manager-yu2l.onrender.com/task/${id}`;
         let responce = await fetch(url,{
           headers:{
             "Authorization": localStorage.getItem("token")
@@ -159,7 +159,7 @@ function Data(data){
         try {
             let id = e.target.id
             console.log(id)
-            let url = `http://localhost:8080/task/delete/${id}`;
+            let url = `https://task-manager-yu2l.onrender.com/task/delete/${id}`;
             let responce = await fetch(url,{
                 method : "DELETE"
             });

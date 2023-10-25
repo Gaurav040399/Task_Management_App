@@ -12,7 +12,7 @@ const onsignup = async () => {
   };
   console.log(obj);
   try {
-    let url = "http://localhost:8080/user/register";
+    let url = "https://task-manager-yu2l.onrender.com/user/register";
     let responce = await fetch(url, {
       method: "POST",
       body: JSON.stringify(obj),

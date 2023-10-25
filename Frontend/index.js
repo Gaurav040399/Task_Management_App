@@ -11,7 +11,7 @@ loginBtn.addEventListener("click", async (e) => {
   };
   console.log(obj);
   try {
-    let url = "http://localhost:8080/user/login";
+    let url = "https://task-manager-yu2l.onrender.com/user/login";
     let responce = await fetch(url, {
       method: "POST",
       body: JSON.stringify(obj),
