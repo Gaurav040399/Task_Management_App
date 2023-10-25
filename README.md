@@ -9,4 +9,4 @@ GET   /task/     = getting all task
 GET   /task/:id  =  getting single task using id 
 PATCH /task/update/:id  = updating task
 DELETE /task/delete/:id = deleting task
-GET   task//admin/user = admin can check all users and his/her tasks
+GET   task/admin/user = admin can check all users and his/her tasks
