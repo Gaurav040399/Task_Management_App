@@ -23,8 +23,7 @@
             <li><a href="#">Career</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../signup/signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="../index.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a onclick="homePage()"><span class="glyphicon glyphicon-log-in"></span> Logout </a></li>
           </ul>
         </div>
       </nav>
@@ -62,17 +61,17 @@
     <div>
       <label for="status">Status</label>
     <select name="status" id="status">
-      <option value="completed">Completed</option>
-      <option value="pending">Pending</option>
-      <option value="not_started">Not started</option>
+      <option value="Not Started">Not started</option>
+      <option value="Completed">Completed</option>
+      <option value="Pending">Pending</option>
     </select>
     </div>
     
-    <button id="submitBtn">Create Task</button>
+    <button id="submitBtn"> Add Task</button>
   </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="closeBtn">Close</button>
         </div>
       </div>
       

@@ -1,51 +1,112 @@
 let createBtn = document.getElementById("submitBtn")
 let taskBtn = document.getElementById("task")
-let form = document.getElementById("form")
-console.log(form)
+let form = document.getElementById("form");
+const content = document.getElementById("content");
+let title = document.getElementById("title")
+let description = document.getElementById("desc")
+let status = document.getElementById("status")
+let closeBtn = document.getElementById("closeBtn")
+let myModel = document.getElementById("myModal")
+// console.log(form)
+let editingData 
+let isEditing = false
 
 
 createBtn.addEventListener("click",async (e)=>{
     e.preventDefault()
+    editCreatTask()
+})
+
+async function editCreatTask(){
+  if(!isEditing){
     let data = {
-        title : form.title.value,
-        description : form.desc.value,
-        status : form.status.value
-    }
-    // console.log(data)
-    try {
-        let url = "http://localhost:8080/task/create";
-        let responce = await fetch(url, {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        let res = await responce.json();
-        console.log("res", res);
+      title : form.title.value,
+      description : form.desc.value,
+      status : form.status.value
+  }
+  // console.log(data)
+  try {
+      let url = "http://localhost:8080/task/create";
+      let responce = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("token")
+        },
+      });
+      let res = await responce.json();
+      console.log("res", res);
+      if(res.isOk){
         alert("Task create Successful");
-        form.title.value = ""
-        form.desc.value = ""
-        form.status.value = "completed"
-      } catch (error) {
-        console.log(error.message);
+        allTaskf()
+        form.reset()
+      }else{
+        alert(res.message)
       }
-})
-
-const content = document.getElementById("content")
-
-taskBtn.addEventListener("click", async()=>{
+      
+    } catch (error) {
+      console.log(error.message);
+    }
+   }else{
     try {
-        let url = "http://localhost:8080/task";
-        let responce = await fetch(url);
-        let res = await responce.json();
-        console.log("res", res);
-        Data(res.data)
-      } catch (error) {
-        console.log(error.message);
-      }
-})
+       
+      
+      // status.value = editingData.status
 
+      let updateData = {
+          title : title.value,
+          description : description.value,
+          status : form.status.value
+      }
+      
+      let resPatch = await fetch(`http://localhost:8080/task/update/${editingData._id}`,{
+          method : "PATCH",
+          headers:{
+              "content-type":"application/json",
+                "Authorization": localStorage.getItem("token")
+             
+          },
+          body: JSON.stringify(updateData)
+      });
+      // Data(res.data)
+      let resData = await resPatch.json()
+      if(resData.isOk){
+        isEditing = false;
+        createBtn.innerText = "Add Task"
+        // myModel.style.display = "none"
+        window.location.reload()
+        // allTaskf()
+      }else{
+        alert(resData.message)
+      }
+      
+      
+    } catch (error) {
+      console.log(error.message);
+    }
+   }
+}
+
+
+taskBtn.addEventListener("click",allTaskf)
+
+
+ async function allTaskf(){
+  try {
+    let url = "http://localhost:8080/task";
+    let responce = await fetch(url,{
+      headers:{
+        "Authorization": localStorage.getItem("token")
+      }
+    });
+    let res = await responce.json();
+    // console.log("res", res);
+    Data(res.data)
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 function Data(data){
     content.innerHTML = ""
@@ -62,36 +123,36 @@ function Data(data){
        h3.textContent = `Title : ${ele.title}`
        desc.textContent = `Description : ${ele.description}` 
        status.textContent = `Status : ${ele.status}`
+       edit.setAttribute("type", "button");
+       edit.id = ele._id
+       edit.className = "btn btn-info";
+       edit.setAttribute("data-toggle", "modal");
+       edit.setAttribute("data-target", "#myModal");
        edit.textContent = "Edit"
        deletebtn.textContent = "Delete"
 
        edit.addEventListener("click",async(e)=>{
-        try {
-            let id = e.target.id
-            console.log(id)
-            let url = `http://localhost:8080/task/${id}`;
-            let responce = await fetch(url);
-            let res = await responce.json();
-            console.log("res", res);
-
-
-
-            let updateData = {
-                title : res.data.title,
-                description : res.data.description,
-                status : res.data.status
-            }
-            let resPatch = await fetch(url,{
-                method : "PATCH",
-                headers:{
-                    "content-type":"application/json"
-                },
-                body: JSON.stringify(updateData)
-            });
-            Data(res.data)
-          } catch (error) {
-            console.log(error.message);
+        isEditing = true
+        let id = e.target.id
+        console.log(id)
+        let url = `http://localhost:8080/task/${id}`;
+        let responce = await fetch(url,{
+          headers:{
+            "Authorization": localStorage.getItem("token")
           }
+        });
+        let res = await responce.json();
+        if(res.isOk){
+          editingData = res.data
+          form.title.value = editingData.title
+          description.value = editingData.description
+          // console.log(editingData._id)
+          // console.log("res....", res.data);
+          createBtn.innerText = "Edit Task"
+        }else{
+          alert(res.message)
+        }
+        
        })
 
        deletebtn.addEventListener("click",async(e)=>{
@@ -104,7 +165,8 @@ function Data(data){
             });
             let res = await responce.json();
             console.log("res", res);
-            Data(res.data)
+            allTaskf()
+            // Data(res.data)
           } catch (error) {
             console.log(error.message);
           }
@@ -112,4 +174,10 @@ function Data(data){
         div.append(h3,desc,status,edit,deletebtn)
         content.append(div)
     })
+}
+
+allTaskf()
+function homePage(){
+  localStorage.clear()
+  window.location.href = "../index.html"
 }

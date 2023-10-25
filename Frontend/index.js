@@ -1,6 +1,10 @@
 let email = document.getElementById("email");
 let password = document.getElementById("password");
-const onLogin = async () => {
+let loginBtn = document.getElementById("login")
+
+loginBtn.addEventListener("click", async (e) => {
+  console.log("gsfdfds")
+  e.preventDefault()
   let obj = {
     email: email.value,
     password: password.value,
@@ -16,12 +20,19 @@ const onLogin = async () => {
       },
     });
     let res = await responce.json();
-    console.log("res", res);
-    alert("Login Successfull");
-    window.location.href = "http://127.0.0.1:5500/Frontend/home/home.html";
-    email.value = "";
-    password.value = "";
+    if(res.isOk){
+      console.log("res", res);
+      localStorage.setItem("token",res.token)
+      alert("Login Successfull");
+      window.location.href = "./home/home.html";
+      email.value = "";
+      password.value = "";
+    }else{
+      alert(res.message)
+    }
+   
   } catch (error) {
+    alert("error")
     console.log(error.message);
   }
-};
+});

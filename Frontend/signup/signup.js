@@ -1,11 +1,11 @@
-let name = document.getElementById("name");
+let Name = document.getElementById("name");
 let role = document.getElementById("role");
 let email = document.getElementById("email");
 let password = document.getElementById("password");
 
 const onsignup = async () => {
   let obj = {
-    name: name.value,
+    name: Name.value,
     email: email.value,
     role: role.value,
     password: password.value,
@@ -22,8 +22,13 @@ const onsignup = async () => {
     });
     let res = await responce.json();
     console.log("res", res);
-    alert("SignUp Successfull");
-    window.location.href = "http://127.0.0.1:5500/Frontend/index.html";
+    if(res.isOk){
+      alert("SignUp Successfull");
+      window.location.href = "../index.html";
+    }else{
+      alert(res.message)
+    }
+    
   } catch (error) {
     console.log(error.message);
   }
